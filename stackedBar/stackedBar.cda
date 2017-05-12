@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CDADescriptor>
+   <DataSources>
+      <Connection id="tableQuery" type="scripting.scripting">
+         <Initscript/>
+         <Language>beanshell</Language>
+      </Connection>
+   </DataSources>
+   <DataAccess access="public" connection="tableQuery" id="tableQuery" type="jsonScriptable">
+      <Name>tableQuery</Name>
+      <Cache duration="3600" enabled="true"/>
+      <Columns/>
+      <Parameters/>
+      <Query><![CDATA[{
+   "resultset":[
+      ["Name1", "1,2,2,5", "0,2,0,0", 12],
+      ["Name2", "3,2,3,2", "0,0,8,0", 10],
+      ["Name3", "1,1,4,4", "1,0,0,0", 5],
+      ["Name4", "2,3,1,4", "0,0,6,0", 7]
+   ],
+
+   "metadata":[
+      {"colIndex":0,"colType":"String","colName":"Metrics"},
+      {"colIndex":1,"colType":"String","colName":"data1"},
+      {"colIndex":2,"colType":"String","colName":"data2"},
+      {"colIndex":3,"colType":"String","colName":"data3"}
+   ]
+}]]></Query>
+   </DataAccess>
+</CDADescriptor>
