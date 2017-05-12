@@ -1,0 +1,1889 @@
+{
+ "components": {
+  "rows": [
+   {
+    "id": "OTHERCOMPONENTS",
+    "name": "Others",
+    "parent": "UnIqEiD",
+    "properties": [
+     {
+      "name": "Group",
+      "type": "Label",
+      "value": "Others"
+     }
+    ],
+    "type": "Label",
+    "typeDesc": "<i>Group</i>"
+   },
+   {
+    "id": "bd0c2004-1d2f-d88e-d32c-4553f111da08",
+    "parent": "OTHERCOMPONENTS",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "areaChartQueryComponent"
+     },
+     {
+      "name": "listeners",
+      "type": "Listeners",
+      "value": "[]"
+     },
+     {
+      "name": "parameters",
+      "type": "ValuesArray",
+      "value": "[]"
+     },
+     {
+      "name": "resultvar",
+      "type": "Result",
+      "value": ""
+     },
+     {
+      "name": "dataSource",
+      "type": "Datasource",
+      "value": "areaChartQuery"
+     },
+     {
+      "name": "asynchronousMode",
+      "value": "true",
+      "type": "Boolean"
+     },
+     {
+      "name": "priority",
+      "type": "Integer",
+      "value": 5
+     },
+     {
+      "name": "refreshPeriod",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "htmlObject",
+      "type": "HtmlObject",
+      "value": "${h:areaChartObj}"
+     },
+     {
+      "name": "executeAtStart",
+      "type": "Boolean",
+      "value": "true"
+     },
+     {
+      "name": "preExecution",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "postExecution",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "postFetch",
+      "type": "JavaScript",
+      "value": "function f(data){\n    var result = data.resultset,\n        cat = [],\n        kwh = [],\n        temp = [];\n    \n    _.each(result, function(row){\n        cat.push(row[0]);\n        kwh.push(row[1]);\n        temp.push(row[2]);\n    });\n    \n    $(\"#\" + this.htmlObject).highcharts({\n        chart: {\n            zoomType: 'xy'\n        },\n        \n        title: {\n            text: 'Power & Temp'\n        },\n        \n        subtitle: {\n            text: document.ontouchstart === undefined ?\n                    'Click and drag in the plot area to zoom in' : 'Pinch the chart to zoom in'\n        },\n        \n        xAxis: {\n            title: {\n                text: 'Time'\n            },\n            type: 'time',\n            categories: cat,\n            plotLines: [{\n                value: 13,\n                color: 'green',\n                dashStyle: 'shortdash',\n                width: 1,\n                label: {\n                    text: 'vazio'\n                }\n            }, {\n                value: 70,\n                color: 'green',\n                dashStyle: 'shortdash',\n                width: 1,\n                label: {\n                    text: 'cheias'\n                }\n            }]\n        },\n        \n        yAxis: [{ // Primary yAxis\n            title: {\n                text: 'Power (watts)',\n                style: {\n                    color: Highcharts.getOptions().colors[1]\n                }\n            },\n            min: 0,\n            labels: {\n                formatter: function () {\n                    if ( this.value >= 1000 ){\n                        return this.value / 1000 + 'k';\n                    } else {\n                        return this.value;\n                    }\n                },\n                style: {\n                    color: Highcharts.getOptions().colors[1]\n                }\n            }\n        }, { // Secondary yAxis\n            title: {\n                text: 'Temperature',\n                style: {\n                    color: Highcharts.getOptions().colors[0]\n                }\n            },\n            labels: {\n                format: '{value}°C',\n                style: {\n                    color: Highcharts.getOptions().colors[0]\n                }\n            },\n            opposite: true\n        }],\n        \n        legend: {\n            align: 'right',\n            verticalAlign: 'top',\n            y: 20,\n            floating: true,\n            borderWidth: 0\n        },\n        \n        plotOptions: {\n            area: {\n                fillColor: {\n                    linearGradient: {\n                        x1: 0,\n                        y1: 0,\n                        x2: 0,\n                        y2: 1\n                    },\n                    stops: [\n                        [0, Highcharts.getOptions().colors[1]],\n                        [1, Highcharts.Color(Highcharts.getOptions().colors[1]).setOpacity(0).get('rgba')]\n                    ]\n                },\n                marker: {\n                    radius: 2\n                },\n                lineWidth: 1,\n                states: {\n                    hover: {\n                        lineWidth: 2\n                    }\n                },\n                threshold: null\n            }\n        },\n            \n        series: [{\n            name: 'Power',\n            type: 'area',\n            color: Highcharts.getOptions().colors[1],\n            data: kwh,\n            tooltip: {\n                valueSuffix: ' watts'\n            }\n        \n        }, {\n            name: 'Temperature',\n            type: 'spline',\n            yAxis: 1,\n            color: Highcharts.getOptions().colors[0],\n            data: temp,\n            tooltip: {\n                valueSuffix: '°C'\n            }\n        }],\n        \n        tooltip: {\n            shared: true,\n            crosshairs: true\n        }\n    });\n    \n    \n} "
+     },
+     {
+      "name": "preChange",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "postChange",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "tooltip",
+      "type": "Html",
+      "value": ""
+     }
+    ],
+    "rowName": "Query Component",
+    "type": "ComponentsQuery",
+    "typeDesc": "Query Component"
+   },
+   {
+    "id": "6e82abd9-4835-f6fe-771a-1be2a4606f0d",
+    "parent": "OTHERCOMPONENTS",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "lineChartQueryComponent"
+     },
+     {
+      "name": "listeners",
+      "type": "Listeners",
+      "value": "[]"
+     },
+     {
+      "name": "parameters",
+      "type": "ValuesArray",
+      "value": "[]"
+     },
+     {
+      "name": "resultvar",
+      "type": "Result",
+      "value": ""
+     },
+     {
+      "name": "dataSource",
+      "type": "Datasource",
+      "value": "lineChartQuery"
+     },
+     {
+      "name": "asynchronousMode",
+      "value": "true",
+      "type": "Boolean"
+     },
+     {
+      "name": "priority",
+      "type": "Integer",
+      "value": 5
+     },
+     {
+      "name": "refreshPeriod",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "htmlObject",
+      "type": "HtmlObject",
+      "value": "${h:lineChartObj}"
+     },
+     {
+      "name": "executeAtStart",
+      "type": "Boolean",
+      "value": "true"
+     },
+     {
+      "name": "preExecution",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "postExecution",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "postFetch",
+      "type": "JavaScript",
+      "value": "function f(data){\n    var result = data.resultset,\n        cat = [],\n        min = [],\n        avg = [],\n        max = [];\n    \n    _.each(result, function(row){\n        cat.push(row[0]);\n        min.push(Math.round(row[1]*10)/10);\n        avg.push(Math.round(row[2]*10)/10);\n        max.push(Math.round(row[3]*10)/10);\n    });\n    \n    $(\"#\" + this.htmlObject).highcharts({\n        chart: {\n            type: 'spline'\n        },\n        \n        title: {\n            text: 'Temperature'\n        },\n        \n        xAxis: {\n            title: {\n                text: 'Date'\n            },\n            type: 'datetime',\n            categories: cat\n        },\n        \n        yAxis: {\n            title: {\n                text: 'Temperature (°C)'\n            }\n        },\n        \n        legend: {\n            layout: 'vertical',\n            align: 'left',\n            verticalAlign: 'top',\n            x: 50,\n            y: 50,\n            floating: true,\n            borderWidth: 1,\n            backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'\n        },\n    \n        plotOptions: {\n            spline: {\n                dataLabels: {\n                    enabled: false\n                },\n                enableMouseTracking: true,\n                marker: {\n                    enabled: false\n                }\n            }\n        },\n        \n        series: [{\n            name: 'max',\n            color: 'red',\n            data: max\n        }, {\n            name: 'avg',\n            color: 'green',\n            data: avg\n        }, {\n            name: 'min',\n            color: 'blue',\n            data: min\n        }],\n        \n        tooltip: {\n            shared: true,\n            crosshairs: true,\n            valueSuffix: ' ºC'\n        }\n    });\n    \n    \n} "
+     },
+     {
+      "name": "preChange",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "postChange",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "tooltip",
+      "type": "Html",
+      "value": ""
+     }
+    ],
+    "rowName": "Query Component",
+    "type": "ComponentsQuery",
+    "typeDesc": "Query Component"
+   },
+   {
+    "id": "f6c15598-6eca-12dc-173b-a5e63026fb8e",
+    "parent": "OTHERCOMPONENTS",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "barChartQueryComponent"
+     },
+     {
+      "name": "listeners",
+      "type": "Listeners",
+      "value": "[]"
+     },
+     {
+      "name": "parameters",
+      "type": "ValuesArray",
+      "value": "[]"
+     },
+     {
+      "name": "resultvar",
+      "type": "Result",
+      "value": ""
+     },
+     {
+      "name": "dataSource",
+      "type": "Datasource",
+      "value": "barChartQuery"
+     },
+     {
+      "name": "asynchronousMode",
+      "value": "true",
+      "type": "Boolean"
+     },
+     {
+      "name": "priority",
+      "type": "Integer",
+      "value": 5
+     },
+     {
+      "name": "refreshPeriod",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "htmlObject",
+      "type": "HtmlObject",
+      "value": "${h:barChartObj}"
+     },
+     {
+      "name": "executeAtStart",
+      "type": "Boolean",
+      "value": "true"
+     },
+     {
+      "name": "preExecution",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "postExecution",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "postFetch",
+      "type": "JavaScript",
+      "value": "function f(data){\n    var result = data.resultset;\n    \n    //moment.duration(row[0], \"HH:mm:ss\").asSeconds();\n    \n    $(\"#\" + this.htmlObject).highcharts({\n        chart: {\n            type: 'column'\n        },\n        \n        title: {\n            text: 'Periods'\n        },\n\n        xAxis: {\n            type: 'category',\n            labels: {\n                rotation: -45,\n                style: {\n                    fontSize: '13px',\n                    fontFamily: 'Verdana, sans-serif'\n                }\n            }\n        },\n        \n        yAxis: {\n            min: 0,\n            title: {\n                text: 'Watts'\n            }\n        },\n        legend: {\n            enabled: false\n        },\n        tooltip: {\n            pointFormat: '<b>{point.y:.0f} watts</b>'\n        },\n        series: [{\n            name: 'Watts',\n            data: result,\n            dataLabels: {\n                enabled: true,\n                rotation: -90,\n                color: '#FFFFFF',\n                align: 'right',\n                format: '{point.y:.0f}',\n                y: 10, // 10 pixels down from the top\n                style: {\n                    fontSize: '13px',\n                    fontFamily: 'Verdana, sans-serif'\n                }\n            }\n        }]\n    });\n} "
+     },
+     {
+      "name": "preChange",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "postChange",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "tooltip",
+      "type": "Html",
+      "value": ""
+     }
+    ],
+    "rowName": "Query Component",
+    "type": "ComponentsQuery",
+    "typeDesc": "Query Component"
+   },
+   {
+    "id": "c8a0e833-eedf-8318-1d9f-0a4acc432aa8",
+    "parent": "OTHERCOMPONENTS",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "stackedChartQueryComponent"
+     },
+     {
+      "name": "listeners",
+      "type": "Listeners",
+      "value": "[]"
+     },
+     {
+      "name": "parameters",
+      "type": "ValuesArray",
+      "value": "[]"
+     },
+     {
+      "name": "resultvar",
+      "type": "Result",
+      "value": ""
+     },
+     {
+      "name": "dataSource",
+      "type": "Datasource",
+      "value": "stackedChartQuery"
+     },
+     {
+      "name": "asynchronousMode",
+      "value": "true",
+      "type": "Boolean"
+     },
+     {
+      "name": "priority",
+      "type": "Integer",
+      "value": 5
+     },
+     {
+      "name": "refreshPeriod",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "htmlObject",
+      "type": "HtmlObject",
+      "value": "${h:stackedChartObj}"
+     },
+     {
+      "name": "executeAtStart",
+      "type": "Boolean",
+      "value": "true"
+     },
+     {
+      "name": "preExecution",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "postExecution",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "postFetch",
+      "type": "JavaScript",
+      "value": "function f(data){\n    var result = data.resultset,\n        cat = [],\n        Measure1 = [], Measure2 = [], Measure3 = [],\n        Measure4 = [], Measure5 = [], Measure6 = [],\n        Measure7 = [], Measure8 = [], Measure9 = [];\n    \n    _.each(result, function(row){\n        cat.push(row[0]);\n        Measure1.push(Math.round(row[1]*100)/100);\n        Measure2.push(Math.round(row[2]*100)/100);\n        Measure3.push(Math.round(row[3]*100)/100);\n        Measure4.push(Math.round(row[4]*100)/100);\n        Measure5.push(Math.round(row[5]*100)/100);\n        Measure6.push(Math.round(row[6]*100)/100);\n        Measure7.push(Math.round(row[7]*100)/100);\n        Measure8.push(Math.round(row[8]*100)/100);\n        Measure9.push(Math.round(row[9]*100)/100);\n    });\n    \n    $(\"#\" + this.htmlObject).highcharts({\n        chart: {\n            type: 'column'\n        },\n        title: {\n            text: 'Stacked column chart'\n        },\n        xAxis: {\n            categories: cat\n        },\n        yAxis: {\n            min: 0,\n            title: {\n                text: 'Total Spend'\n            },\n            stackLabels: {\n                enabled: true,\n                style: {\n                    fontWeight: 'bold',\n                    color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'\n                }\n            }\n        },\n        legend: {\n            align: 'right',\n            x: -30,\n            verticalAlign: 'top',\n            y: 25,\n            floating: true,\n            backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',\n            borderColor: '#CCC',\n            borderWidth: 1,\n            shadow: false\n        },\n        tooltip: {\n            headerFormat: '<b>{point.x}</b><br/>',\n            pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'\n        },\n        plotOptions: {\n            column: {\n                stacking: 'normal',\n                dataLabels: {\n                    enabled: false,\n                    color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'\n                }\n            }\n        },\n        series: [{\n            name: 'Measure1',\n            data: Measure1\n        }, {\n            name: 'Measure2',\n            data: Measure2\n        }, {\n            name: 'Measure3',\n            data: Measure3\n        }, {\n            name: 'Measure4',\n            data: Measure4\n        }, {\n            name: 'Measure5',\n            data: Measure5\n        }, {\n            name: 'Measure6',\n            data: Measure6\n        }, {\n            name: 'Measure7',\n            data: Measure7\n        }, {\n            name: 'Measure8',\n            data: Measure8\n        }, {\n            name: 'Measure9',\n            data: Measure9\n        }]\n    });\n} "
+     },
+     {
+      "name": "preChange",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "postChange",
+      "type": "JavaScript",
+      "value": ""
+     },
+     {
+      "name": "tooltip",
+      "type": "Html",
+      "value": ""
+     }
+    ],
+    "rowName": "Query Component",
+    "type": "ComponentsQuery",
+    "typeDesc": "Query Component"
+   }
+  ]
+ },
+ "datasources": {
+  "rows": [
+   {
+    "id": "SCRIPTING",
+    "name": "SCRIPTING Queries",
+    "parent": "UnIqEiD",
+    "properties": [
+     {
+      "name": "Group",
+      "type": "Label",
+      "value": "SCRIPTING Queries"
+     }
+    ],
+    "type": "Label",
+    "typeDesc": "<i>Group</i>"
+   },
+   {
+    "id": "dfef1b24-d50a-9c94-cd64-2bc94a438053",
+    "meta": "CDA",
+    "meta_conntype": "scripting.scripting",
+    "meta_datype": "jsonScriptable",
+    "parent": "SCRIPTING",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "areaChartQuery"
+     },
+     {
+      "name": "initscript",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "language",
+      "type": "String",
+      "value": "beanshell"
+     },
+     {
+      "name": "access",
+      "type": "Access",
+      "value": "public"
+     },
+     {
+      "name": "query",
+      "type": "JsonScriptableQuery",
+      "value": "{\r\n   \"resultset\":[\r\n        [\"00:00:00\", 148, 21],\r\n\t\t[\"00:01:00\", 118, 20],\r\n\t\t[\"00:02:00\", 197, 25],\r\n\t\t[\"00:03:00\", 171, 15],\r\n\t\t[\"00:04:00\", 175, 22],\r\n\t\t[\"00:05:00\", 116, 22],\r\n\t\t[\"00:06:00\", 110, 25],\r\n\t\t[\"00:07:00\", 140, 24],\r\n\t\t[\"00:08:00\", 191, 18],\r\n\t\t[\"00:09:00\", 148, 15],\r\n\t\t[\"00:10:00\", 153, 19],\r\n\t\t[\"00:11:00\", 192, 22],\r\n\t\t[\"00:12:00\", 198, 23],\r\n\t\t[\"00:13:00\", 138, 20],\r\n\t\t[\"00:14:00\", 118, 18],\r\n\t\t[\"00:15:00\", 147, 24],\r\n\t\t[\"00:16:00\", 112, 25],\r\n\t\t[\"00:17:00\", 174, 15],\r\n\t\t[\"00:18:00\", 119, 25],\r\n\t\t[\"00:19:00\", 147, 16],\r\n\t\t[\"00:20:00\", 174, 19],\r\n\t\t[\"00:21:00\", 131, 25],\r\n\t\t[\"00:22:00\", 130, 18],\r\n\t\t[\"00:23:00\", 101, 16],\r\n\t\t[\"00:24:00\", 144, 19],\r\n\t\t[\"00:25:00\", 123, 16],\r\n\t\t[\"00:26:00\", 196, 24],\r\n\t\t[\"00:27:00\", 108, 15],\r\n\t\t[\"00:28:00\", 128, 15],\r\n\t\t[\"00:29:00\", 124, 22],\r\n\t\t[\"00:30:00\", 156, 16],\r\n\t\t[\"00:31:00\", 179, 21],\r\n\t\t[\"00:32:00\", 117, 16],\r\n\t\t[\"00:33:00\", 124, 25],\r\n\t\t[\"00:34:00\", 200, 17],\r\n\t\t[\"00:35:00\", 160, 20],\r\n\t\t[\"00:36:00\", 189, 18],\r\n\t\t[\"00:37:00\", 105, 20],\r\n\t\t[\"00:38:00\", 104, 20],\r\n\t\t[\"00:39:00\", 192, 24],\r\n\t\t[\"00:40:00\", 105, 21],\r\n\t\t[\"00:41:00\", 144, 17],\r\n\t\t[\"00:42:00\", 180, 21],\r\n\t\t[\"00:43:00\", 180, 20],\r\n\t\t[\"00:44:00\", 125, 19],\r\n\t\t[\"00:45:00\", 192, 22],\r\n\t\t[\"00:46:00\", 162, 21],\r\n\t\t[\"00:47:00\", 180, 18],\r\n\t\t[\"00:48:00\", 168, 25],\r\n\t\t[\"00:49:00\", 129, 15],\r\n\t\t[\"00:50:00\", 176, 15],\r\n\t\t[\"00:51:00\", 175, 16],\r\n\t\t[\"00:52:00\", 194, 23],\r\n\t\t[\"00:53:00\", 193, 17],\r\n\t\t[\"00:54:00\", 124, 21],\r\n\t\t[\"00:55:00\", 143, 21],\r\n\t\t[\"00:56:00\", 104, 20],\r\n\t\t[\"00:57:00\", 114, 20],\r\n\t\t[\"00:58:00\", 151, 20],\r\n\t\t[\"00:59:00\", 125, 22],\r\n\t\t[\"01:00:00\", 196, 25],\r\n\t\t[\"01:01:00\", 168, 18],\r\n\t\t[\"01:02:00\", 186, 18],\r\n\t\t[\"01:03:00\", 152, 23],\r\n\t\t[\"01:04:00\", 146, 22],\r\n\t\t[\"01:05:00\", 184, 25],\r\n\t\t[\"01:06:00\", 193, 17],\r\n\t\t[\"01:07:00\", 117, 18],\r\n\t\t[\"01:08:00\", 143, 15],\r\n\t\t[\"01:09:00\", 166, 18],\r\n\t\t[\"01:10:00\", 140, 25],\r\n\t\t[\"01:11:00\", 183, 18],\r\n\t\t[\"01:12:00\", 154, 25],\r\n\t\t[\"01:13:00\", 124, 20],\r\n\t\t[\"01:14:00\", 186, 23],\r\n\t\t[\"01:15:00\", 191, 18],\r\n\t\t[\"01:16:00\", 113, 16],\r\n\t\t[\"01:17:00\", 116, 22],\r\n\t\t[\"01:18:00\", 160, 16],\r\n\t\t[\"01:19:00\", 147, 16],\r\n\t\t[\"01:20:00\", 178, 22],\r\n\t\t[\"01:21:00\", 104, 22],\r\n\t\t[\"01:22:00\", 166, 20],\r\n\t\t[\"01:23:00\", 107, 16],\r\n\t\t[\"01:24:00\", 160, 20],\r\n\t\t[\"01:25:00\", 105, 15],\r\n\t\t[\"01:26:00\", 187, 17],\r\n\t\t[\"01:27:00\", 113, 20],\r\n\t\t[\"01:28:00\", 153, 19],\r\n\t\t[\"01:29:00\", 164, 16],\r\n\t\t[\"01:30:00\", 191, 20],\r\n\t\t[\"01:31:00\", 173, 19],\r\n\t\t[\"01:32:00\", 179, 16],\r\n\t\t[\"01:33:00\", 188, 24],\r\n\t\t[\"01:34:00\", 130, 20],\r\n\t\t[\"01:35:00\", 130, 25],\r\n\t\t[\"01:36:00\", 121, 24],\r\n\t\t[\"01:37:00\", 195, 15],\r\n\t\t[\"01:38:00\", 100, 22],\r\n\t\t[\"01:39:00\", 153, 23],\r\n\t\t[\"01:40:00\", 105, 20],\r\n\t\t[\"01:41:00\", 189, 24],\r\n\t\t[\"01:42:00\", 167, 15],\r\n\t\t[\"01:43:00\", 179, 23],\r\n\t\t[\"01:44:00\", 142, 17],\r\n\t\t[\"01:45:00\", 103, 23],\r\n\t\t[\"01:46:00\", 167, 17],\r\n\t\t[\"01:47:00\", 108, 17],\r\n\t\t[\"01:48:00\", 177, 16],\r\n\t\t[\"01:49:00\", 155, 15],\r\n\t\t[\"01:50:00\", 168, 21],\r\n\t\t[\"01:51:00\", 187, 18],\r\n\t\t[\"01:52:00\", 182, 15],\r\n\t\t[\"01:53:00\", 147, 21],\r\n\t\t[\"01:54:00\", 188, 19],\r\n\t\t[\"01:55:00\", 144, 23],\r\n\t\t[\"01:56:00\", 131, 16],\r\n\t\t[\"01:57:00\", 133, 20],\r\n\t\t[\"01:58:00\", 155, 17],\r\n\t\t[\"01:59:00\", 144, 18],\r\n\t\t[\"02:00:00\", 130, 16],\r\n\t\t[\"02:01:00\", 106, 25],\r\n\t\t[\"02:02:00\", 145, 22],\r\n\t\t[\"02:03:00\", 172, 18],\r\n\t\t[\"02:04:00\", 189, 16],\r\n\t\t[\"02:05:00\", 123, 23],\r\n\t\t[\"02:06:00\", 160, 16],\r\n\t\t[\"02:07:00\", 146, 21],\r\n\t\t[\"02:08:00\", 112, 17],\r\n\t\t[\"02:09:00\", 115, 16],\r\n\t\t[\"02:10:00\", 158, 25],\r\n\t\t[\"02:11:00\", 148, 19],\r\n\t\t[\"02:12:00\", 164, 24],\r\n\t\t[\"02:13:00\", 176, 19],\r\n\t\t[\"02:14:00\", 102, 19],\r\n\t\t[\"02:15:00\", 195, 20],\r\n\t\t[\"02:16:00\", 156, 20],\r\n\t\t[\"02:17:00\", 189, 25],\r\n\t\t[\"02:18:00\", 178, 15],\r\n\t\t[\"02:19:00\", 138, 20],\r\n\t\t[\"02:20:00\", 153, 19],\r\n\t\t[\"02:21:00\", 156, 21],\r\n\t\t[\"02:22:00\", 118, 22],\r\n\t\t[\"02:23:00\", 190, 15],\r\n\t\t[\"02:24:00\", 133, 18],\r\n\t\t[\"02:25:00\", 159, 22],\r\n\t\t[\"02:26:00\", 156, 15],\r\n\t\t[\"02:27:00\", 141, 21],\r\n\t\t[\"02:28:00\", 157, 23],\r\n\t\t[\"02:29:00\", 179, 21],\r\n\t\t[\"02:30:00\", 114, 19],\r\n\t\t[\"02:31:00\", 135, 19],\r\n\t\t[\"02:32:00\", 147, 23],\r\n\t\t[\"02:33:00\", 101, 17],\r\n\t\t[\"02:34:00\", 130, 19],\r\n\t\t[\"02:35:00\", 141, 22],\r\n\t\t[\"02:36:00\", 111, 24],\r\n\t\t[\"02:37:00\", 122, 16],\r\n\t\t[\"02:38:00\", 199, 25],\r\n\t\t[\"02:39:00\", 182, 25],\r\n\t\t[\"02:40:00\", 124, 23],\r\n\t\t[\"02:41:00\", 105, 18],\r\n\t\t[\"02:42:00\", 150, 21],\r\n\t\t[\"02:43:00\", 196, 25],\r\n\t\t[\"02:44:00\", 120, 23],\r\n\t\t[\"02:45:00\", 129, 25],\r\n\t\t[\"02:46:00\", 194, 15],\r\n\t\t[\"02:47:00\", 129, 18],\r\n\t\t[\"02:48:00\", 165, 16],\r\n\t\t[\"02:49:00\", 131, 22],\r\n\t\t[\"02:50:00\", 100, 20],\r\n\t\t[\"02:51:00\", 125, 22],\r\n\t\t[\"02:52:00\", 199, 22],\r\n\t\t[\"02:53:00\", 115, 15],\r\n\t\t[\"02:54:00\", 138, 22],\r\n\t\t[\"02:55:00\", 109, 21],\r\n\t\t[\"02:56:00\", 124, 21],\r\n\t\t[\"02:57:00\", 177, 17],\r\n\t\t[\"02:58:00\", 116, 19],\r\n\t\t[\"02:59:00\", 187, 19],\r\n\t\t[\"03:00:00\", 108, 15],\r\n\t\t[\"03:01:00\", 140, 22],\r\n\t\t[\"03:02:00\", 150, 25],\r\n\t\t[\"03:03:00\", 120, 20],\r\n\t\t[\"03:04:00\", 133, 24],\r\n\t\t[\"03:05:00\", 188, 24],\r\n\t\t[\"03:06:00\", 193, 24],\r\n\t\t[\"03:07:00\", 115, 23],\r\n\t\t[\"03:08:00\", 200, 16],\r\n\t\t[\"03:09:00\", 156, 25],\r\n\t\t[\"03:10:00\", 125, 20],\r\n\t\t[\"03:11:00\", 135, 16],\r\n\t\t[\"03:12:00\", 155, 24],\r\n\t\t[\"03:13:00\", 176, 17],\r\n\t\t[\"03:14:00\", 100, 25],\r\n\t\t[\"03:15:00\", 200, 16],\r\n\t\t[\"03:16:00\", 111, 19],\r\n\t\t[\"03:17:00\", 180, 16],\r\n\t\t[\"03:18:00\", 140, 20],\r\n\t\t[\"03:19:00\", 125, 19],\r\n\t\t[\"03:20:00\", 136, 16],\r\n\t\t[\"03:21:00\", 130, 22],\r\n\t\t[\"03:22:00\", 174, 21],\r\n\t\t[\"03:23:00\", 114, 20],\r\n\t\t[\"03:24:00\", 129, 24],\r\n\t\t[\"03:25:00\", 176, 22],\r\n\t\t[\"03:26:00\", 183, 21],\r\n\t\t[\"03:27:00\", 199, 18],\r\n\t\t[\"03:28:00\", 144, 19],\r\n\t\t[\"03:29:00\", 159, 21],\r\n\t\t[\"03:30:00\", 139, 22],\r\n\t\t[\"03:31:00\", 113, 15],\r\n\t\t[\"03:32:00\", 184, 15],\r\n\t\t[\"03:33:00\", 165, 21],\r\n\t\t[\"03:34:00\", 139, 16],\r\n\t\t[\"03:35:00\", 178, 17],\r\n\t\t[\"03:36:00\", 176, 19],\r\n\t\t[\"03:37:00\", 143, 18],\r\n\t\t[\"03:38:00\", 109, 20],\r\n\t\t[\"03:39:00\", 162, 20],\r\n\t\t[\"03:40:00\", 187, 16],\r\n\t\t[\"03:41:00\", 100, 16],\r\n\t\t[\"03:42:00\", 113, 16],\r\n\t\t[\"03:43:00\", 177, 22],\r\n\t\t[\"03:44:00\", 195, 25],\r\n\t\t[\"03:45:00\", 124, 16],\r\n\t\t[\"03:46:00\", 157, 25],\r\n\t\t[\"03:47:00\", 108, 24],\r\n\t\t[\"03:48:00\", 100, 18],\r\n\t\t[\"03:49:00\", 138, 20],\r\n\t\t[\"03:50:00\", 137, 15],\r\n\t\t[\"03:51:00\", 105, 21],\r\n\t\t[\"03:52:00\", 120, 20],\r\n\t\t[\"03:53:00\", 149, 16],\r\n\t\t[\"03:54:00\", 121, 18],\r\n\t\t[\"03:55:00\", 198, 16],\r\n\t\t[\"03:56:00\", 151, 15],\r\n\t\t[\"03:57:00\", 169, 18],\r\n\t\t[\"03:58:00\", 154, 15],\r\n\t\t[\"03:59:00\", 120, 21],\r\n\t\t[\"04:00:00\", 152, 15],\r\n\t\t[\"04:01:00\", 116, 17],\r\n\t\t[\"04:02:00\", 140, 16],\r\n\t\t[\"04:03:00\", 118, 16],\r\n\t\t[\"04:04:00\", 133, 17],\r\n\t\t[\"04:05:00\", 126, 19],\r\n\t\t[\"04:06:00\", 121, 25],\r\n\t\t[\"04:07:00\", 183, 16],\r\n\t\t[\"04:08:00\", 177, 21],\r\n\t\t[\"04:09:00\", 172, 17],\r\n\t\t[\"04:10:00\", 132, 15],\r\n\t\t[\"04:11:00\", 105, 20],\r\n\t\t[\"04:12:00\", 127, 25],\r\n\t\t[\"04:13:00\", 160, 15],\r\n\t\t[\"04:14:00\", 190, 16],\r\n\t\t[\"04:15:00\", 182, 22],\r\n\t\t[\"04:16:00\", 123, 21],\r\n\t\t[\"04:17:00\", 132, 23],\r\n\t\t[\"04:18:00\", 120, 20],\r\n\t\t[\"04:19:00\", 103, 21],\r\n\t\t[\"04:20:00\", 102, 20],\r\n\t\t[\"04:21:00\", 198, 24],\r\n\t\t[\"04:22:00\", 102, 15],\r\n\t\t[\"04:23:00\", 150, 16],\r\n\t\t[\"04:24:00\", 110, 21],\r\n\t\t[\"04:25:00\", 125, 20],\r\n\t\t[\"04:26:00\", 195, 25],\r\n\t\t[\"04:27:00\", 146, 24],\r\n\t\t[\"04:28:00\", 174, 23],\r\n\t\t[\"04:29:00\", 179, 16],\r\n\t\t[\"04:30:00\", 199, 18],\r\n\t\t[\"04:31:00\", 128, 20],\r\n\t\t[\"04:32:00\", 196, 18],\r\n\t\t[\"04:33:00\", 134, 23],\r\n\t\t[\"04:34:00\", 189, 25],\r\n\t\t[\"04:35:00\", 134, 22],\r\n\t\t[\"04:36:00\", 175, 24],\r\n\t\t[\"04:37:00\", 180, 24],\r\n\t\t[\"04:38:00\", 136, 24],\r\n\t\t[\"04:39:00\", 147, 23],\r\n\t\t[\"04:40:00\", 153, 24],\r\n\t\t[\"04:41:00\", 143, 19],\r\n\t\t[\"04:42:00\", 195, 19],\r\n\t\t[\"04:43:00\", 176, 25],\r\n\t\t[\"04:44:00\", 129, 23],\r\n\t\t[\"04:45:00\", 184, 16],\r\n\t\t[\"04:46:00\", 188, 15],\r\n\t\t[\"04:47:00\", 194, 15],\r\n\t\t[\"04:48:00\", 193, 22],\r\n\t\t[\"04:49:00\", 145, 18],\r\n\t\t[\"04:50:00\", 146, 15],\r\n\t\t[\"04:51:00\", 121, 18],\r\n\t\t[\"04:52:00\", 158, 23],\r\n\t\t[\"04:53:00\", 114, 15],\r\n\t\t[\"04:54:00\", 169, 24],\r\n\t\t[\"04:55:00\", 107, 16],\r\n\t\t[\"04:56:00\", 147, 19],\r\n\t\t[\"04:57:00\", 170, 21],\r\n\t\t[\"04:58:00\", 165, 24],\r\n\t\t[\"04:59:00\", 144, 25],\r\n\t\t[\"05:00:00\", 120, 19],\r\n\t\t[\"05:01:00\", 173, 16],\r\n\t\t[\"05:02:00\", 107, 18],\r\n\t\t[\"05:03:00\", 125, 23],\r\n\t\t[\"05:04:00\", 156, 15],\r\n\t\t[\"05:05:00\", 144, 20],\r\n\t\t[\"05:06:00\", 138, 19],\r\n\t\t[\"05:07:00\", 143, 20],\r\n\t\t[\"05:08:00\", 115, 17],\r\n\t\t[\"05:09:00\", 155, 17],\r\n\t\t[\"05:10:00\", 194, 24],\r\n\t\t[\"05:11:00\", 106, 24],\r\n\t\t[\"05:12:00\", 139, 15],\r\n\t\t[\"05:13:00\", 152, 20],\r\n\t\t[\"05:14:00\", 127, 16],\r\n\t\t[\"05:15:00\", 178, 20],\r\n\t\t[\"05:16:00\", 149, 19],\r\n\t\t[\"05:17:00\", 145, 24],\r\n\t\t[\"05:18:00\", 174, 18],\r\n\t\t[\"05:19:00\", 186, 20],\r\n\t\t[\"05:20:00\", 187, 21],\r\n\t\t[\"05:21:00\", 114, 21],\r\n\t\t[\"05:22:00\", 141, 22],\r\n\t\t[\"05:23:00\", 113, 15],\r\n\t\t[\"05:24:00\", 103, 22],\r\n\t\t[\"05:25:00\", 166, 19],\r\n\t\t[\"05:26:00\", 159, 25],\r\n\t\t[\"05:27:00\", 168, 20],\r\n\t\t[\"05:28:00\", 120, 15],\r\n\t\t[\"05:29:00\", 192, 24],\r\n\t\t[\"05:30:00\", 172, 15],\r\n\t\t[\"05:31:00\", 139, 21],\r\n\t\t[\"05:32:00\", 151, 21],\r\n\t\t[\"05:33:00\", 188, 21],\r\n\t\t[\"05:34:00\", 199, 22],\r\n\t\t[\"05:35:00\", 130, 16],\r\n\t\t[\"05:36:00\", 101, 19],\r\n\t\t[\"05:37:00\", 119, 18],\r\n\t\t[\"05:38:00\", 148, 23],\r\n\t\t[\"05:39:00\", 150, 24],\r\n\t\t[\"05:40:00\", 158, 16],\r\n\t\t[\"05:41:00\", 142, 23],\r\n\t\t[\"05:42:00\", 185, 20],\r\n\t\t[\"05:43:00\", 197, 20],\r\n\t\t[\"05:44:00\", 176, 25],\r\n\t\t[\"05:45:00\", 184, 24],\r\n\t\t[\"05:46:00\", 176, 16],\r\n\t\t[\"05:47:00\", 121, 21],\r\n\t\t[\"05:48:00\", 161, 16],\r\n\t\t[\"05:49:00\", 160, 22],\r\n\t\t[\"05:50:00\", 162, 21],\r\n\t\t[\"05:51:00\", 185, 16],\r\n\t\t[\"05:52:00\", 185, 21],\r\n\t\t[\"05:53:00\", 106, 16],\r\n\t\t[\"05:54:00\", 183, 20],\r\n\t\t[\"05:55:00\", 123, 24],\r\n\t\t[\"05:56:00\", 164, 20],\r\n\t\t[\"05:57:00\", 162, 20],\r\n\t\t[\"05:58:00\", 126, 25],\r\n\t\t[\"05:59:00\", 129, 24],\r\n\t\t[\"06:00:00\", 106, 17],\r\n\t\t[\"06:01:00\", 102, 18],\r\n\t\t[\"06:02:00\", 115, 22],\r\n\t\t[\"06:03:00\", 110, 17],\r\n\t\t[\"06:04:00\", 138, 19],\r\n\t\t[\"06:05:00\", 108, 22],\r\n\t\t[\"06:06:00\", 151, 20],\r\n\t\t[\"06:07:00\", 106, 22],\r\n\t\t[\"06:08:00\", 114, 24],\r\n\t\t[\"06:09:00\", 139, 16],\r\n\t\t[\"06:10:00\", 136, 19],\r\n\t\t[\"06:11:00\", 117, 25],\r\n\t\t[\"06:12:00\", 195, 22],\r\n\t\t[\"06:13:00\", 109, 19],\r\n\t\t[\"06:14:00\", 127, 16],\r\n\t\t[\"06:15:00\", 145, 23],\r\n\t\t[\"06:16:00\", 153, 22],\r\n\t\t[\"06:17:00\", 135, 17],\r\n\t\t[\"06:18:00\", 192, 18],\r\n\t\t[\"06:19:00\", 158, 24],\r\n\t\t[\"06:20:00\", 188, 19],\r\n\t\t[\"06:21:00\", 142, 21],\r\n\t\t[\"06:22:00\", 134, 18],\r\n\t\t[\"06:23:00\", 163, 17],\r\n\t\t[\"06:24:00\", 133, 16],\r\n\t\t[\"06:25:00\", 153, 16],\r\n\t\t[\"06:26:00\", 193, 15],\r\n\t\t[\"06:27:00\", 194, 25],\r\n\t\t[\"06:28:00\", 195, 15],\r\n\t\t[\"06:29:00\", 145, 15],\r\n\t\t[\"06:30:00\", 160, 16],\r\n\t\t[\"06:31:00\", 143, 17],\r\n\t\t[\"06:32:00\", 130, 19],\r\n\t\t[\"06:33:00\", 168, 21],\r\n\t\t[\"06:34:00\", 162, 18],\r\n\t\t[\"06:35:00\", 180, 19],\r\n\t\t[\"06:36:00\", 136, 23],\r\n\t\t[\"06:37:00\", 128, 17],\r\n\t\t[\"06:38:00\", 178, 22],\r\n\t\t[\"06:39:00\", 164, 24],\r\n\t\t[\"06:40:00\", 164, 19],\r\n\t\t[\"06:41:00\", 165, 22],\r\n\t\t[\"06:42:00\", 105, 22],\r\n\t\t[\"06:43:00\", 134, 21],\r\n\t\t[\"06:44:00\", 152, 17],\r\n\t\t[\"06:45:00\", 190, 20],\r\n\t\t[\"06:46:00\", 153, 20],\r\n\t\t[\"06:47:00\", 191, 21],\r\n\t\t[\"06:48:00\", 155, 24],\r\n\t\t[\"06:49:00\", 175, 15],\r\n\t\t[\"06:50:00\", 130, 16],\r\n\t\t[\"06:51:00\", 177, 16],\r\n\t\t[\"06:52:00\", 117, 15],\r\n\t\t[\"06:53:00\", 125, 17],\r\n\t\t[\"06:54:00\", 154, 25],\r\n\t\t[\"06:55:00\", 194, 21],\r\n\t\t[\"06:56:00\", 141, 19],\r\n\t\t[\"06:57:00\", 165, 16],\r\n\t\t[\"06:58:00\", 134, 16],\r\n\t\t[\"06:59:00\", 137, 17],\r\n\t\t[\"07:00:00\", 140, 18],\r\n\t\t[\"07:01:00\", 177, 21],\r\n\t\t[\"07:02:00\", 166, 23],\r\n\t\t[\"07:03:00\", 138, 15],\r\n\t\t[\"07:04:00\", 153, 18],\r\n\t\t[\"07:05:00\", 148, 22],\r\n\t\t[\"07:06:00\", 163, 15],\r\n\t\t[\"07:07:00\", 187, 21],\r\n\t\t[\"07:08:00\", 198, 19],\r\n\t\t[\"07:09:00\", 121, 17],\r\n\t\t[\"07:10:00\", 189, 18],\r\n\t\t[\"07:11:00\", 194, 21],\r\n\t\t[\"07:12:00\", 114, 24],\r\n\t\t[\"07:13:00\", 111, 21],\r\n\t\t[\"07:14:00\", 111, 19],\r\n\t\t[\"07:15:00\", 172, 15],\r\n\t\t[\"07:16:00\", 140, 19],\r\n\t\t[\"07:17:00\", 160, 16],\r\n\t\t[\"07:18:00\", 189, 18],\r\n\t\t[\"07:19:00\", 162, 21],\r\n\t\t[\"07:20:00\", 168, 20],\r\n\t\t[\"07:21:00\", 129, 25],\r\n\t\t[\"07:22:00\", 141, 19],\r\n\t\t[\"07:23:00\", 196, 18],\r\n\t\t[\"07:24:00\", 194, 24],\r\n\t\t[\"07:25:00\", 124, 21],\r\n\t\t[\"07:26:00\", 145, 23],\r\n\t\t[\"07:27:00\", 193, 19],\r\n\t\t[\"07:28:00\", 109, 22],\r\n\t\t[\"07:29:00\", 149, 15],\r\n\t\t[\"07:30:00\", 140, 25],\r\n\t\t[\"07:31:00\", 139, 20],\r\n\t\t[\"07:32:00\", 145, 19],\r\n\t\t[\"07:33:00\", 175, 15],\r\n\t\t[\"07:34:00\", 129, 25],\r\n\t\t[\"07:35:00\", 130, 18],\r\n\t\t[\"07:36:00\", 143, 22],\r\n\t\t[\"07:37:00\", 179, 19],\r\n\t\t[\"07:38:00\", 144, 22],\r\n\t\t[\"07:39:00\", 113, 15],\r\n\t\t[\"07:40:00\", 107, 19],\r\n\t\t[\"07:41:00\", 102, 24],\r\n\t\t[\"07:42:00\", 153, 25],\r\n\t\t[\"07:43:00\", 155, 16],\r\n\t\t[\"07:44:00\", 110, 22],\r\n\t\t[\"07:45:00\", 133, 22],\r\n\t\t[\"07:46:00\", 103, 16],\r\n\t\t[\"07:47:00\", 193, 20],\r\n\t\t[\"07:48:00\", 179, 24],\r\n\t\t[\"07:49:00\", 166, 23],\r\n\t\t[\"07:50:00\", 187, 20],\r\n\t\t[\"07:51:00\", 190, 18],\r\n\t\t[\"07:52:00\", 109, 24],\r\n\t\t[\"07:53:00\", 154, 25],\r\n\t\t[\"07:54:00\", 114, 19],\r\n\t\t[\"07:55:00\", 112, 25],\r\n\t\t[\"07:56:00\", 154, 23],\r\n\t\t[\"07:57:00\", 147, 15],\r\n\t\t[\"07:58:00\", 193, 25],\r\n\t\t[\"07:59:00\", 200, 15],\r\n\t\t[\"08:00:00\", 176, 16],\r\n\t\t[\"08:01:00\", 171, 19],\r\n\t\t[\"08:02:00\", 189, 18],\r\n\t\t[\"08:03:00\", 159, 19],\r\n\t\t[\"08:04:00\", 116, 24],\r\n\t\t[\"08:05:00\", 138, 21],\r\n\t\t[\"08:06:00\", 169, 18],\r\n\t\t[\"08:07:00\", 174, 15],\r\n\t\t[\"08:08:00\", 118, 18],\r\n\t\t[\"08:09:00\", 114, 22],\r\n\t\t[\"08:10:00\", 182, 24],\r\n\t\t[\"08:11:00\", 186, 21],\r\n\t\t[\"08:12:00\", 137, 23],\r\n\t\t[\"08:13:00\", 151, 20],\r\n\t\t[\"08:14:00\", 129, 17],\r\n\t\t[\"08:15:00\", 131, 19],\r\n\t\t[\"08:16:00\", 107, 18],\r\n\t\t[\"08:17:00\", 200, 15],\r\n\t\t[\"08:18:00\", 196, 18],\r\n\t\t[\"08:19:00\", 171, 15],\r\n\t\t[\"08:20:00\", 172, 22],\r\n\t\t[\"08:21:00\", 103, 16],\r\n\t\t[\"08:22:00\", 164, 22],\r\n\t\t[\"08:23:00\", 183, 16],\r\n\t\t[\"08:24:00\", 141, 18],\r\n\t\t[\"08:25:00\", 134, 23],\r\n\t\t[\"08:26:00\", 123, 24],\r\n\t\t[\"08:27:00\", 130, 19],\r\n\t\t[\"08:28:00\", 113, 24],\r\n\t\t[\"08:29:00\", 179, 24],\r\n\t\t[\"08:30:00\", 149, 17],\r\n\t\t[\"08:31:00\", 196, 22],\r\n\t\t[\"08:32:00\", 105, 25],\r\n\t\t[\"08:33:00\", 131, 20],\r\n\t\t[\"08:34:00\", 135, 15],\r\n\t\t[\"08:35:00\", 129, 23],\r\n\t\t[\"08:36:00\", 182, 17],\r\n\t\t[\"08:37:00\", 188, 23],\r\n\t\t[\"08:38:00\", 108, 18],\r\n\t\t[\"08:39:00\", 130, 24],\r\n\t\t[\"08:40:00\", 145, 21],\r\n\t\t[\"08:41:00\", 170, 23],\r\n\t\t[\"08:42:00\", 154, 18],\r\n\t\t[\"08:43:00\", 183, 25],\r\n\t\t[\"08:44:00\", 123, 20],\r\n\t\t[\"08:45:00\", 194, 24],\r\n\t\t[\"08:46:00\", 126, 21],\r\n\t\t[\"08:47:00\", 117, 15],\r\n\t\t[\"08:48:00\", 149, 23],\r\n\t\t[\"08:49:00\", 149, 16],\r\n\t\t[\"08:50:00\", 153, 25],\r\n\t\t[\"08:51:00\", 117, 16],\r\n\t\t[\"08:52:00\", 125, 24],\r\n\t\t[\"08:53:00\", 112, 25],\r\n\t\t[\"08:54:00\", 197, 19],\r\n\t\t[\"08:55:00\", 122, 19],\r\n\t\t[\"08:56:00\", 193, 24],\r\n\t\t[\"08:57:00\", 198, 18],\r\n\t\t[\"08:58:00\", 182, 17],\r\n\t\t[\"08:59:00\", 100, 18]\r\n   ],\r\n\r\n   \"metadata\":[\r\n        {colIndex: 0, colType: \"String\", colName: \"time\"},\r\n        {colIndex: 1, colType: \"Integer\", colName: \"watts\"},\r\n    \t{colIndex: 2, colType: \"Integer\", colName: \"temp\"}\r\n   ]\r\n}"
+     },
+     {
+      "name": "parameters",
+      "type": "CdaParameters",
+      "value": "[]"
+     },
+     {
+      "name": "cdacalculatedcolumns",
+      "type": "CdaCalculatedColumnsArray",
+      "value": "[]"
+     },
+     {
+      "name": "cdacolumns",
+      "type": "CdaColumnsArray",
+      "value": "[]"
+     },
+     {
+      "name": "output",
+      "type": "IndexArray",
+      "value": "[]"
+     },
+     {
+      "name": "outputMode",
+      "type": "OutputMode",
+      "value": "include"
+     },
+     {
+      "name": "cacheKeys",
+      "type": "CacheKeysValues",
+      "value": "[]"
+     },
+     {
+      "name": "cacheDuration",
+      "type": "Integer",
+      "value": 3600
+     },
+     {
+      "name": "cache",
+      "type": "Boolean",
+      "value": "true"
+     }
+    ],
+    "rowName": "jsonScriptable over scripting",
+    "type": "ComponentsjsonScriptable_scripting",
+    "typeDesc": "jsonScriptable over scripting"
+   },
+   {
+    "id": "53009508-5ff3-afbb-4db1-98a961a970d9",
+    "meta": "CDA",
+    "meta_conntype": "scripting.scripting",
+    "meta_datype": "jsonScriptable",
+    "parent": "SCRIPTING",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "lineChartQuery"
+     },
+     {
+      "name": "initscript",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "language",
+      "type": "String",
+      "value": "beanshell"
+     },
+     {
+      "name": "access",
+      "type": "Access",
+      "value": "public"
+     },
+     {
+      "name": "query",
+      "type": "JsonScriptableQuery",
+      "value": "{\r\n   \"resultset\":[\r\n        [\"2017-02-25\", 15.5, 15.938830001476157, 16.35],\r\n\t\t[\"2017-02-26\", 15.179999999999998, 15.718729725328656, 16.400000000000002],\r\n\t\t[\"2017-02-27\", 15.2, 15.650214561287479, 16.599999999999998],\r\n\t\t[\"2017-02-28\", 14.774999999999999, 15.347740104417289, 16.300000000000004],\r\n\t\t[\"2017-03-01\", 15.099999999999998, 15.644009286816594, 16.322222222222223],\r\n\t\t[\"2017-03-02\", 15, 15.587618175805812, 16.41111111111111],\r\n\t\t[\"2017-03-03\", 14.599999999999998, 15.125972360008788, 15.8],\r\n\t\t[\"2017-03-04\", 14.529999999999998, 15.258212384259233, 16.300000000000004],\r\n\t\t[\"2017-03-05\", 14.957142857142859, 15.278123394160023, 15.820000000000002],\r\n\t\t[\"2017-03-06\", 14.900000000000002, 15.448941693723105, 16.022222222222222],\r\n\t\t[\"2017-03-07\", 15.177777777777777, 16.229145144400295, 17.5],\r\n\t\t[\"2017-03-08\", 15.75, 17.031066269264755, 18.333333333333336],\r\n\t\t[\"2017-03-09\", 16.95555555555556, 18.00482382605816, 19.214285714285715],\r\n\t\t[\"2017-03-10\", 18, 18.86455927579371, 20.0125],\r\n\t\t[\"2017-03-11\", 18.3, 18.77300338704504, 19.639999999999997],\r\n\t\t[\"2017-03-12\", 17.8, 18.4179537588182, 19.599999999999998],\r\n\t\t[\"2017-03-13\", 17.199999999999996, 17.910638054653642, 19],\r\n\t\t[\"2017-03-14\", 16.709999999999997, 17.083783494669092, 17.522222222222222],\r\n\t\t[\"2017-03-15\", 16.599999999999998, 17.276900475637422, 18.27],\r\n\t\t[\"2017-03-16\", 16.900000000000002, 17.36370999929844, 18.099999999999998],\r\n\t\t[\"2017-03-17\", 16.900000000000002, 17.338200947971725, 18.099999999999998],\r\n\t\t[\"2017-03-18\", 16.675, 17.873540351431124, 19.022222222222222],\r\n\t\t[\"2017-03-19\", 17.2375, 18.15461036455813, 19.525],\r\n\t\t[\"2017-03-20\", 17.199999999999996, 18.048342697811304, 19],\r\n\t\t[\"2017-03-21\", 17.199999999999996, 17.889715451872526, 18.7],\r\n\t\t[\"2017-03-22\", 16.099999999999998, 17.075737185846485, 18],\r\n\t\t[\"2017-03-23\", 15.099999999999996, 15.997539542247827, 16.9,00000000000002],\r\n\t\t[\"2017-03-24\", 15.099999999999998, 15.561704495350456, 16.300000000000004],\r\n\t\t[\"2017-03-25\", 14.2, 14.990127397486837, 15.8],\r\n\t\t[\"2017-03-26\", 13.425, 14.358334405127748, 15.122222222222222],\r\n\t\t[\"2017-03-27\", 14.2375, 15.112702969148836, 16.32],\r\n\t\t[\"2017-03-28\", 14.7, 14.897715902410424, 15.18888888888889]\r\n   ],\r\n\r\n   \"metadata\":[\r\n        {colIndex: 0, colType: \"String\", colName: \"date\"},\r\n\t\t{colIndex: 1, colType: \"Numeric\", colName: \"min\"},\r\n\t\t{colIndex: 2, colType: \"Numeric\", colName: \"avg\"},\r\n\t\t{colIndex: 3, colType: \"Numeric\", colName: \"max\"}\r\n   ]\r\n}"
+     },
+     {
+      "name": "parameters",
+      "type": "CdaParameters",
+      "value": "[]"
+     },
+     {
+      "name": "cdacalculatedcolumns",
+      "type": "CdaCalculatedColumnsArray",
+      "value": "[]"
+     },
+     {
+      "name": "cdacolumns",
+      "type": "CdaColumnsArray",
+      "value": "[]"
+     },
+     {
+      "name": "output",
+      "type": "IndexArray",
+      "value": "[]"
+     },
+     {
+      "name": "outputMode",
+      "type": "OutputMode",
+      "value": "include"
+     },
+     {
+      "name": "cacheKeys",
+      "type": "CacheKeysValues",
+      "value": "[]"
+     },
+     {
+      "name": "cacheDuration",
+      "type": "Integer",
+      "value": 3600
+     },
+     {
+      "name": "cache",
+      "type": "Boolean",
+      "value": "true"
+     }
+    ],
+    "rowName": "jsonScriptable over scripting",
+    "type": "ComponentsjsonScriptable_scripting",
+    "typeDesc": "jsonScriptable over scripting"
+   },
+   {
+    "id": "4ad86c5d-1c4d-ace0-95b7-57509fd667fb",
+    "meta": "CDA",
+    "meta_conntype": "scripting.scripting",
+    "meta_datype": "jsonScriptable",
+    "parent": "SCRIPTING",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "barChartQuery"
+     },
+     {
+      "name": "initscript",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "language",
+      "type": "String",
+      "value": "beanshell"
+     },
+     {
+      "name": "access",
+      "type": "Access",
+      "value": "public"
+     },
+     {
+      "name": "query",
+      "type": "JsonScriptableQuery",
+      "value": "{\r\n   \"resultset\":[\r\n        [\"0h-8h\", 109075],\r\n        [\"8h-16h\", 67958],\r\n        [\"16h-24h\", 189165]\r\n   ],\r\n\r\n   \"metadata\":[\r\n        {colIndex: 0, colType: \"String\", colName: \"time\"},\r\n        {colIndex: 1, colType: \"Numeric\", colName: \"sum\"}\r\n   ]\r\n}"
+     },
+     {
+      "name": "parameters",
+      "type": "CdaParameters",
+      "value": "[]"
+     },
+     {
+      "name": "cdacalculatedcolumns",
+      "type": "CdaCalculatedColumnsArray",
+      "value": "[]"
+     },
+     {
+      "name": "cdacolumns",
+      "type": "CdaColumnsArray",
+      "value": "[]"
+     },
+     {
+      "name": "output",
+      "type": "IndexArray",
+      "value": "[]"
+     },
+     {
+      "name": "outputMode",
+      "type": "OutputMode",
+      "value": "include"
+     },
+     {
+      "name": "cacheKeys",
+      "type": "CacheKeysValues",
+      "value": "[]"
+     },
+     {
+      "name": "cacheDuration",
+      "type": "Integer",
+      "value": 3600
+     },
+     {
+      "name": "cache",
+      "type": "Boolean",
+      "value": "true"
+     }
+    ],
+    "rowName": "jsonScriptable over scripting",
+    "type": "ComponentsjsonScriptable_scripting",
+    "typeDesc": "jsonScriptable over scripting"
+   },
+   {
+    "id": "26059d6e-5d48-a9c5-cf84-8edf15388288",
+    "meta": "CDA",
+    "meta_conntype": "scripting.scripting",
+    "meta_datype": "jsonScriptable",
+    "parent": "SCRIPTING",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "stackedChartQuery"
+     },
+     {
+      "name": "initscript",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "language",
+      "type": "String",
+      "value": "beanshell"
+     },
+     {
+      "name": "access",
+      "type": "Access",
+      "value": "public"
+     },
+     {
+      "name": "query",
+      "type": "JsonScriptableQuery",
+      "value": "{\r\n   \"resultset\":[\r\n        [\"2016-03-31\", 31.94, 14.58, 0, 56.95, 273.72, 579.26, 38.27, 0, 0],\r\n        [\"2016-04-30\", 31.39, 14.01, 52.46, 49.83, 273.68, 179.87, 29.93, 0, 0],\r\n        [\"2016-05-31\", 31.39, 24.83, 0, 33.19, 270.20000000000005, 147.83, 39.85, 0, 119.49],\r\n        [\"2016-06-30\", 31.39, 15.73, 57.76, 34.81, 270.15999999999997, 116.42, 37.95, 0, 0],\r\n        [\"2016-07-31\", 31.39, 15.73, 0, 35.12, 391.43, 252.87, 53.25, 47.5, 0],\r\n        [\"2016-08-31\", 31.39, 15.73, 43.25, 34.8, 270.28999999999996, 364.43, 37.98, 0, 52.55],\r\n        [\"2016-09-30\", 31.39, 27.62, 0, 37.63, 270.25, 441.42, 37.98, 24.5, 0],\r\n        [\"2016-10-31\", 31.44, 18.16, 43.55, 38.33, 270.21000000000004, 276.66, 37.85, 24.5, 49.99],\r\n        [\"2016-11-30\", 31.44, 18.16, 0, 40.53, 269.07, 67.62, 64.57, 24.5, 55.3],\r\n        [\"2016-12-31\", 31.87, 18.16, 49.66, 37.9, 269.03, 341.41, 44.92, 24.5, 0],\r\n        [\"2017-01-31\", 31.45, 22.69, 0, 40.33, 268.98, 162.17, 54.91, 24.5, 0],\r\n        [\"2017-02-28\", 31.39, 18.16, 48.13, 54.13, 268.49, 104.35, 59.46, 24.5, 50]\r\n   ],\r\n\r\n   \"metadata\":[\r\n        {colIndex: 0, colType: \"String\", colName: \"Date\"},\r\n        {colIndex: 1, colType: \"Numeric\", colName: \"Measure1\"},\r\n        {colIndex: 2, colType: \"Numeric\", colName: \"Measure2\"},\r\n        {colIndex: 3, colType: \"Numeric\", colName: \"Measure3\"},\r\n        {colIndex: 4, colType: \"Numeric\", colName: \"Measure4\"},\r\n        {colIndex: 5, colType: \"Numeric\", colName: \"Measure5\"},\r\n        {colIndex: 6, colType: \"Numeric\", colName: \"Measure6\"},\r\n        {colIndex: 7, colType: \"Numeric\", colName: \"Measure7\"},\r\n        {colIndex: 8, colType: \"Numeric\", colName: \"Measure8\"},\r\n        {colIndex: 9, colType: \"Numeric\", colName: \"Measure9\"}\r\n   ]\r\n}"
+     },
+     {
+      "name": "parameters",
+      "type": "CdaParameters",
+      "value": "[]"
+     },
+     {
+      "name": "cdacalculatedcolumns",
+      "type": "CdaCalculatedColumnsArray",
+      "value": "[]"
+     },
+     {
+      "name": "cdacolumns",
+      "type": "CdaColumnsArray",
+      "value": "[]"
+     },
+     {
+      "name": "output",
+      "type": "IndexArray",
+      "value": "[]"
+     },
+     {
+      "name": "outputMode",
+      "type": "OutputMode",
+      "value": "include"
+     },
+     {
+      "name": "cacheKeys",
+      "type": "CacheKeysValues",
+      "value": "[]"
+     },
+     {
+      "name": "cacheDuration",
+      "type": "Integer",
+      "value": 3600
+     },
+     {
+      "name": "cache",
+      "type": "Boolean",
+      "value": "true"
+     }
+    ],
+    "rowName": "jsonScriptable over scripting",
+    "type": "ComponentsjsonScriptable_scripting",
+    "typeDesc": "jsonScriptable over scripting"
+   }
+  ]
+ },
+ "filename": "/public/highcharts/highcharts.cdfde",
+ "layout": {
+  "rows": [
+   {
+    "id": "e5864763-3302-4731-0178-6b77a1cb8476",
+    "parent": "UnIqEiD",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "highchartsJS"
+     },
+     {
+      "name": "resourceFile",
+      "type": "ResourceFile",
+      "value": "${solution:highcharts.js}"
+     },
+     {
+      "name": "resourceType",
+      "type": "Label",
+      "value": "Javascript"
+     }
+    ],
+    "type": "LayoutResourceFile",
+    "typeDesc": "Resource"
+   },
+   {
+    "id": "73a677bc-c218-b918-1e26-57684b010435",
+    "parent": "UnIqEiD",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": ""
+     },
+     {
+      "name": "height",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "roundCorners",
+      "type": "RoundCorners",
+      "value": ""
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "bootstrapPanelStyle",
+      "type": "bootstrapPanelStyleCustom",
+      "value": "panel-default"
+     }
+    ],
+    "type": "BootstrapPanel",
+    "typeDesc": "Bootstrap Panel"
+   },
+   {
+    "id": "d7a630ed-d7be-210b-09ed-6eba94e65ba7",
+    "parent": "73a677bc-c218-b918-1e26-57684b010435",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": ""
+     },
+     {
+      "name": "roundCorners",
+      "type": "RoundCorners",
+      "value": ""
+     },
+     {
+      "name": "textAlign",
+      "type": "TextAlign",
+      "value": ""
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": ""
+     }
+    ],
+    "type": "BootstrapPanelHeader",
+    "typeDesc": "Panel Header"
+   },
+   {
+    "id": "54954f49-35ad-e79d-5e9c-8d71556fb6b0",
+    "parent": "73a677bc-c218-b918-1e26-57684b010435",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": ""
+     },
+     {
+      "name": "roundCorners",
+      "type": "RoundCorners",
+      "value": ""
+     },
+     {
+      "name": "textAlign",
+      "type": "TextAlign",
+      "value": ""
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": ""
+     }
+    ],
+    "type": "BootstrapPanelBody",
+    "typeDesc": "Panel Body"
+   },
+   {
+    "id": "7784960c-6ebc-1e9d-71a7-2bcbd216a015",
+    "parent": "54954f49-35ad-e79d-5e9c-8d71556fb6b0",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "mainRow"
+     },
+     {
+      "name": "height",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "backgroundColor",
+      "type": "Color",
+      "value": ""
+     },
+     {
+      "name": "roundCorners",
+      "type": "RoundCorners",
+      "value": ""
+     },
+     {
+      "name": "textAlign",
+      "type": "TextAlign",
+      "value": ""
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": ""
+     }
+    ],
+    "type": "LayoutRow",
+    "typeDesc": "Row"
+   },
+   {
+    "id": "18d5bb2f-7d3c-5308-f316-f310f64dc545",
+    "parent": "7784960c-6ebc-1e9d-71a7-2bcbd216a015",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "mainColumn"
+     },
+     {
+      "name": "bootstrapExtraSmall",
+      "type": "String",
+      "value": "12"
+     },
+     {
+      "name": "bootstrapSmall",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "bootstrapMedium",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "bootstrapLarge",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "bootstrapCssClass",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "height",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "backgroundColor",
+      "type": "Color",
+      "value": ""
+     },
+     {
+      "name": "roundCorners",
+      "type": "RoundCorners",
+      "value": ""
+     },
+     {
+      "name": "textAlign",
+      "type": "TextAlign",
+      "value": ""
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": ""
+     }
+    ],
+    "type": "LayoutBootstrapColumn",
+    "typeDesc": "Column"
+   },
+   {
+    "id": "b211fea7-8bab-3109-3db0-430826275a1f",
+    "parent": "18d5bb2f-7d3c-5308-f316-f310f64dc545",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "areaTitleRow"
+     },
+     {
+      "name": "height",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "backgroundColor",
+      "type": "Color",
+      "value": ""
+     },
+     {
+      "name": "roundCorners",
+      "type": "RoundCorners",
+      "value": ""
+     },
+     {
+      "name": "textAlign",
+      "type": "TextAlign",
+      "value": ""
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": ""
+     }
+    ],
+    "type": "LayoutRow",
+    "typeDesc": "Row"
+   },
+   {
+    "id": "710fa18f-077d-e46b-4ece-7eaabafd7a8c",
+    "parent": "b211fea7-8bab-3109-3db0-430826275a1f",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "areaTitleObj"
+     },
+     {
+      "name": "bootstrapExtraSmall",
+      "type": "String",
+      "value": "12"
+     },
+     {
+      "name": "bootstrapSmall",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "bootstrapMedium",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "bootstrapLarge",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "bootstrapCssClass",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "height",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "backgroundColor",
+      "type": "Color",
+      "value": ""
+     },
+     {
+      "name": "roundCorners",
+      "type": "RoundCorners",
+      "value": ""
+     },
+     {
+      "name": "textAlign",
+      "type": "TextAlign",
+      "value": ""
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": ""
+     }
+    ],
+    "type": "LayoutBootstrapColumn",
+    "typeDesc": "Column"
+   },
+   {
+    "id": "bc35f07d-ffe6-14cc-c7f4-f4264a16a5b7",
+    "parent": "710fa18f-077d-e46b-4ece-7eaabafd7a8c",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": ""
+     },
+     {
+      "name": "html",
+      "type": "Html",
+      "value": "Area Chart "
+     },
+     {
+      "name": "fontSize",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "color",
+      "type": "Color",
+      "value": ""
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": ""
+     }
+    ],
+    "type": "LayoutHtml",
+    "typeDesc": "Html"
+   },
+   {
+    "id": "bc2eb10c-265d-93fc-ecb0-8e32cca58e70",
+    "parent": "18d5bb2f-7d3c-5308-f316-f310f64dc545",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "areaChartRow"
+     },
+     {
+      "name": "height",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "backgroundColor",
+      "type": "Color",
+      "value": ""
+     },
+     {
+      "name": "roundCorners",
+      "type": "RoundCorners",
+      "value": ""
+     },
+     {
+      "name": "textAlign",
+      "type": "TextAlign",
+      "value": ""
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": ""
+     }
+    ],
+    "type": "LayoutRow",
+    "typeDesc": "Row"
+   },
+   {
+    "id": "5888da34-f24f-9263-bccc-492158082959",
+    "parent": "bc2eb10c-265d-93fc-ecb0-8e32cca58e70",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "areaChartObj"
+     },
+     {
+      "name": "bootstrapExtraSmall",
+      "type": "String",
+      "value": "12"
+     },
+     {
+      "name": "bootstrapSmall",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "bootstrapMedium",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "bootstrapLarge",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "bootstrapCssClass",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "height",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "backgroundColor",
+      "type": "Color",
+      "value": ""
+     },
+     {
+      "name": "roundCorners",
+      "type": "RoundCorners",
+      "value": ""
+     },
+     {
+      "name": "textAlign",
+      "type": "TextAlign",
+      "value": ""
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": ""
+     }
+    ],
+    "type": "LayoutBootstrapColumn",
+    "typeDesc": "Column"
+   },
+   {
+    "id": "34b43ac1-9d0f-1b3d-63a5-96dcc750a5a1",
+    "parent": "18d5bb2f-7d3c-5308-f316-f310f64dc545",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "lineTitleRow"
+     },
+     {
+      "name": "height",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "backgroundColor",
+      "type": "Color",
+      "value": ""
+     },
+     {
+      "name": "roundCorners",
+      "type": "RoundCorners",
+      "value": ""
+     },
+     {
+      "name": "textAlign",
+      "type": "TextAlign",
+      "value": ""
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": ""
+     }
+    ],
+    "type": "LayoutRow",
+    "typeDesc": "Row"
+   },
+   {
+    "id": "6c726978-24af-1680-be92-248610d12a0e",
+    "parent": "34b43ac1-9d0f-1b3d-63a5-96dcc750a5a1",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "lineTitleObj"
+     },
+     {
+      "name": "bootstrapExtraSmall",
+      "type": "String",
+      "value": "12"
+     },
+     {
+      "name": "bootstrapSmall",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "bootstrapMedium",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "bootstrapLarge",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "bootstrapCssClass",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "height",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "backgroundColor",
+      "type": "Color",
+      "value": ""
+     },
+     {
+      "name": "roundCorners",
+      "type": "RoundCorners",
+      "value": ""
+     },
+     {
+      "name": "textAlign",
+      "type": "TextAlign",
+      "value": ""
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": ""
+     }
+    ],
+    "type": "LayoutBootstrapColumn",
+    "typeDesc": "Column"
+   },
+   {
+    "id": "ba95af13-b254-44a5-f9a2-4256668d3a96",
+    "parent": "6c726978-24af-1680-be92-248610d12a0e",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": ""
+     },
+     {
+      "name": "html",
+      "type": "Html",
+      "value": "Line Chart "
+     },
+     {
+      "name": "fontSize",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "color",
+      "type": "Color",
+      "value": ""
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": ""
+     }
+    ],
+    "type": "LayoutHtml",
+    "typeDesc": "Html"
+   },
+   {
+    "id": "2b2b1c51-8aa7-2a0a-a7bf-bf6717e5b82c",
+    "parent": "18d5bb2f-7d3c-5308-f316-f310f64dc545",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "lineChartRow"
+     },
+     {
+      "name": "height",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "backgroundColor",
+      "type": "Color",
+      "value": ""
+     },
+     {
+      "name": "roundCorners",
+      "type": "RoundCorners",
+      "value": ""
+     },
+     {
+      "name": "textAlign",
+      "type": "TextAlign",
+      "value": ""
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": ""
+     }
+    ],
+    "type": "LayoutRow",
+    "typeDesc": "Row"
+   },
+   {
+    "id": "2e06e857-dfa6-7ca3-fc8e-48891458bf8b",
+    "parent": "2b2b1c51-8aa7-2a0a-a7bf-bf6717e5b82c",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "lineChartObj"
+     },
+     {
+      "name": "bootstrapExtraSmall",
+      "type": "String",
+      "value": "12"
+     },
+     {
+      "name": "bootstrapSmall",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "bootstrapMedium",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "bootstrapLarge",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "bootstrapCssClass",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "height",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "backgroundColor",
+      "type": "Color",
+      "value": ""
+     },
+     {
+      "name": "roundCorners",
+      "type": "RoundCorners",
+      "value": ""
+     },
+     {
+      "name": "textAlign",
+      "type": "TextAlign",
+      "value": ""
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": ""
+     }
+    ],
+    "type": "LayoutBootstrapColumn",
+    "typeDesc": "Column"
+   },
+   {
+    "id": "5b72eb96-11b1-f369-f1fe-7bf769f0a9de",
+    "parent": "18d5bb2f-7d3c-5308-f316-f310f64dc545",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "barTitleRow"
+     },
+     {
+      "name": "height",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "backgroundColor",
+      "type": "Color",
+      "value": ""
+     },
+     {
+      "name": "roundCorners",
+      "type": "RoundCorners",
+      "value": ""
+     },
+     {
+      "name": "textAlign",
+      "type": "TextAlign",
+      "value": ""
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": ""
+     }
+    ],
+    "type": "LayoutRow",
+    "typeDesc": "Row"
+   },
+   {
+    "id": "a4d4c532-5ed9-f0e2-c112-82d4736629af",
+    "parent": "5b72eb96-11b1-f369-f1fe-7bf769f0a9de",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "barTitleObj"
+     },
+     {
+      "name": "bootstrapExtraSmall",
+      "type": "String",
+      "value": "12"
+     },
+     {
+      "name": "bootstrapSmall",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "bootstrapMedium",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "bootstrapLarge",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "bootstrapCssClass",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "height",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "backgroundColor",
+      "type": "Color",
+      "value": ""
+     },
+     {
+      "name": "roundCorners",
+      "type": "RoundCorners",
+      "value": ""
+     },
+     {
+      "name": "textAlign",
+      "type": "TextAlign",
+      "value": ""
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": ""
+     }
+    ],
+    "type": "LayoutBootstrapColumn",
+    "typeDesc": "Column"
+   },
+   {
+    "id": "daa0f69b-9d62-a51f-2bae-3db516457dbe",
+    "parent": "a4d4c532-5ed9-f0e2-c112-82d4736629af",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": ""
+     },
+     {
+      "name": "html",
+      "type": "Html",
+      "value": "Bar Chart "
+     },
+     {
+      "name": "fontSize",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "color",
+      "type": "Color",
+      "value": ""
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": ""
+     }
+    ],
+    "type": "LayoutHtml",
+    "typeDesc": "Html"
+   },
+   {
+    "id": "86e9f734-8e37-6745-d18f-7f56049a130f",
+    "parent": "18d5bb2f-7d3c-5308-f316-f310f64dc545",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "barChartRow"
+     },
+     {
+      "name": "height",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "backgroundColor",
+      "type": "Color",
+      "value": ""
+     },
+     {
+      "name": "roundCorners",
+      "type": "RoundCorners",
+      "value": ""
+     },
+     {
+      "name": "textAlign",
+      "type": "TextAlign",
+      "value": ""
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": ""
+     }
+    ],
+    "type": "LayoutRow",
+    "typeDesc": "Row"
+   },
+   {
+    "id": "ab9f20ac-0b28-2194-4429-edfd42f5c39a",
+    "parent": "86e9f734-8e37-6745-d18f-7f56049a130f",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "barChartObj"
+     },
+     {
+      "name": "bootstrapExtraSmall",
+      "type": "String",
+      "value": "6"
+     },
+     {
+      "name": "bootstrapSmall",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "bootstrapMedium",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "bootstrapLarge",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "bootstrapCssClass",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "height",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "backgroundColor",
+      "type": "Color",
+      "value": ""
+     },
+     {
+      "name": "roundCorners",
+      "type": "RoundCorners",
+      "value": ""
+     },
+     {
+      "name": "textAlign",
+      "type": "TextAlign",
+      "value": ""
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": ""
+     }
+    ],
+    "type": "LayoutBootstrapColumn",
+    "typeDesc": "Column"
+   },
+   {
+    "id": "3d58143d-c9dc-27ee-c734-2e78ba7af67e",
+    "parent": "18d5bb2f-7d3c-5308-f316-f310f64dc545",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "stackedTitleRow"
+     },
+     {
+      "name": "height",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "backgroundColor",
+      "type": "Color",
+      "value": ""
+     },
+     {
+      "name": "roundCorners",
+      "type": "RoundCorners",
+      "value": ""
+     },
+     {
+      "name": "textAlign",
+      "type": "TextAlign",
+      "value": ""
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": ""
+     }
+    ],
+    "type": "LayoutRow",
+    "typeDesc": "Row"
+   },
+   {
+    "id": "b13c5c47-0785-08f4-4a98-b7597551f821",
+    "parent": "3d58143d-c9dc-27ee-c734-2e78ba7af67e",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "stackedTitleObj"
+     },
+     {
+      "name": "bootstrapExtraSmall",
+      "type": "String",
+      "value": "12"
+     },
+     {
+      "name": "bootstrapSmall",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "bootstrapMedium",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "bootstrapLarge",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "bootstrapCssClass",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "height",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "backgroundColor",
+      "type": "Color",
+      "value": ""
+     },
+     {
+      "name": "roundCorners",
+      "type": "RoundCorners",
+      "value": ""
+     },
+     {
+      "name": "textAlign",
+      "type": "TextAlign",
+      "value": ""
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": ""
+     }
+    ],
+    "type": "LayoutBootstrapColumn",
+    "typeDesc": "Column"
+   },
+   {
+    "id": "d287d2f2-290e-8cb8-0c4d-a82577097bc2",
+    "parent": "b13c5c47-0785-08f4-4a98-b7597551f821",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": ""
+     },
+     {
+      "name": "html",
+      "type": "Html",
+      "value": "Stacked Chart "
+     },
+     {
+      "name": "fontSize",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "color",
+      "type": "Color",
+      "value": ""
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": ""
+     }
+    ],
+    "type": "LayoutHtml",
+    "typeDesc": "Html"
+   },
+   {
+    "id": "3a90a052-9139-c905-4f53-28a159274a51",
+    "parent": "18d5bb2f-7d3c-5308-f316-f310f64dc545",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "stackedChartRow"
+     },
+     {
+      "name": "height",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "backgroundColor",
+      "type": "Color",
+      "value": ""
+     },
+     {
+      "name": "roundCorners",
+      "type": "RoundCorners",
+      "value": ""
+     },
+     {
+      "name": "textAlign",
+      "type": "TextAlign",
+      "value": ""
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": ""
+     }
+    ],
+    "type": "LayoutRow",
+    "typeDesc": "Row"
+   },
+   {
+    "id": "a9d317a6-e5af-915c-c594-b8764a3618e9",
+    "parent": "3a90a052-9139-c905-4f53-28a159274a51",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": "stackedChartObj"
+     },
+     {
+      "name": "bootstrapExtraSmall",
+      "type": "String",
+      "value": "12"
+     },
+     {
+      "name": "bootstrapSmall",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "bootstrapMedium",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "bootstrapLarge",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "bootstrapCssClass",
+      "type": "String",
+      "value": ""
+     },
+     {
+      "name": "height",
+      "type": "Integer",
+      "value": ""
+     },
+     {
+      "name": "backgroundColor",
+      "type": "Color",
+      "value": ""
+     },
+     {
+      "name": "roundCorners",
+      "type": "RoundCorners",
+      "value": ""
+     },
+     {
+      "name": "textAlign",
+      "type": "TextAlign",
+      "value": ""
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": ""
+     }
+    ],
+    "type": "LayoutBootstrapColumn",
+    "typeDesc": "Column"
+   },
+   {
+    "id": "1d2e91f9-9f8f-741b-47c1-6a65ebe8d142",
+    "parent": "73a677bc-c218-b918-1e26-57684b010435",
+    "properties": [
+     {
+      "name": "name",
+      "type": "Id",
+      "value": ""
+     },
+     {
+      "name": "roundCorners",
+      "type": "RoundCorners",
+      "value": ""
+     },
+     {
+      "name": "textAlign",
+      "type": "TextAlign",
+      "value": ""
+     },
+     {
+      "name": "cssClass",
+      "type": "String",
+      "value": ""
+     }
+    ],
+    "type": "BootstrapPanelFooter",
+    "typeDesc": "Panel Footer"
+   }
+  ],
+  "title": "CDF - Sample structure"
+ }
+}
