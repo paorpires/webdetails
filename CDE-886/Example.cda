@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CDADescriptor>
+   <DataSources>
+      <Connection id="example1Query" type="scripting.scripting">
+         <Initscript/>
+         <Language>beanshell</Language>
+      </Connection>
+   </DataSources>
+   <DataAccess access="public" connection="example1Query" id="example1Query" type="scriptable">
+      <Name>example1Query</Name>
+      <Cache duration="3600" enabled="true"/>
+      <Columns/>
+      <Parameters/>
+      <Query><![CDATA[import org.pentaho.reporting.engine.classic.core.util.TypedTableModel;
+
+String[] columnNames = new String[]{
+"Date", "Measure1","Measure2"
+};
+
+
+Class[] columnTypes = new Class[]{
+String.class,
+Integer.class,
+Integer.class
+};
+
+TypedTableModel model = new TypedTableModel(columnNames, columnTypes);
+
+model.addRow(new Object[]{new String("2017-01-01"), new Integer(24000000), new Integer(16000000)});
+model.addRow(new Object[]{new String("2017-01-02"), new Integer(11000000), new Integer(9000000)});
+model.addRow(new Object[]{new String("2017-01-03"), new Integer(15000000), new Integer(15000000)});
+model.addRow(new Object[]{new String("2017-01-04"), new Integer(10000000), new Integer(3000000)});
+model.addRow(new Object[]{new String("2017-01-05"), new Integer(11000000), new Integer(9000000)});
+model.addRow(new Object[]{new String("2017-01-06"), new Integer(10000000), new Integer(16000000)});
+model.addRow(new Object[]{new String("2017-01-07"), new Integer(24000000), new Integer(16000000)});
+model.addRow(new Object[]{new String("2017-01-08"), new Integer(10000000), new Integer(4000000)});
+model.addRow(new Object[]{new String("2017-01-09"), new Integer(15000000), new Integer(15000000)});
+model.addRow(new Object[]{new String("2017-01-10"), new Integer(4000000), new Integer(6000000)});
+
+return model;]]></Query>
+   </DataAccess>
+</CDADescriptor>
