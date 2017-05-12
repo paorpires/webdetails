@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CDADescriptor>
+   <DataSources>
+      <Connection id="chartQuery" type="mondrian.jndi">
+         <Catalog>mondrian:/SteelWheels</Catalog>
+         <Jndi>SampleData</Jndi>
+      </Connection>
+   </DataSources>
+   <DataAccess access="public" connection="chartQuery" id="chartQuery" type="mdx">
+      <Name>chartQuery</Name>
+      <BandedMode>compact</BandedMode>
+      <Cache duration="3600" enabled="true"/>
+      <Columns/>
+      <Parameters/>
+      <Query><![CDATA[SELECT NON EMPTY {[Measures].[Quantity], [Measures].[Sales]} ON COLUMNS,
+    NON EMPTY {[Product].[All Products].Children} * {[Markets].[All Markets].Children} ON ROWS
+FROM [SteelWheelsSales]]]></Query>
+   </DataAccess>
+</CDADescriptor>
