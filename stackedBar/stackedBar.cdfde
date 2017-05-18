@@ -182,7 +182,7 @@
      {
       "name": "preExecution",
       "type": "JavaScript",
-      "value": "function f() {\r\n    \r\n    this.setAddInOptions(\"colType\",\"stackedDataBar\",function(state){\r\n        \r\n        if(state.colIdx == \"3\"){\r\n            return { \r\n                stacked:        false,\r\n                includeValue:   true,\r\n                widthRatio:     0.9,\r\n            };\r\n        } else {\r\n            return {\r\n                includeValue:   true,\r\n                widthRatio:     0.99,\r\n                stackedColors:  [\"#a1414f\",\"#e8b831\",\"#87a049\",\"#597a3f\"],\r\n                absValue:       true,\r\n                stacked:        true\r\n            };\r\n        }\r\n\t});\r\n} "
+      "value": "function f() {\r\n    \r\n    this.setAddInOptions(\"colType\",\"stackedDataBar\",function(state){\r\n        \r\n        if(state.colIdx == \"3\"){\r\n            return { \r\n                stacked:        false,\r\n                includeValue:   true,\r\n                widthRatio:     0.9,\r\n            };\r\n        } else {\r\n            return {\r\n                includeValue:   true,\r\n                widthRatio:     0.99,\r\n                stackedColors:  [\"#aaa\",\"#bbb\",\"#ccc\",\"#ddd\"],\r\n                absValue:       true,\r\n                stacked:        true\r\n            };\r\n        }\r\n\t});\r\n} "
      },
      {
       "name": "postExecution",
@@ -272,7 +272,7 @@
      {
       "name": "query",
       "type": "JsonScriptableQuery",
-      "value": "{\r\n   \"resultset\":[\r\n      [\"Name1\", \"1,2,2,5\", \"0,2,0,0\", 12],\r\n      [\"Name2\", \"3,2,3,2\", \"0,0,8,0\", 10],\r\n      [\"Name3\", \"1,1,4,4\", \"1,0,0,0\", 5],\r\n      [\"Name4\", \"2,3,1,4\", \"0,0,6,0\", 7]\r\n   ],\r\n\r\n   \"metadata\":[\r\n      {\"colIndex\":0,\"colType\":\"String\",\"colName\":\"Metrics\"},\r\n      {\"colIndex\":1,\"colType\":\"String\",\"colName\":\"data1\"},\r\n      {\"colIndex\":2,\"colType\":\"String\",\"colName\":\"data2\"},\r\n      {\"colIndex\":3,\"colType\":\"String\",\"colName\":\"data3\"}\r\n   ]\r\n}"
+      "value": "{\r\n   \"resultset\":[\r\n      [\"Name1\", \"1,2,2,5\", \"0,2,0,0\", 12],\r\n      [\"Name2\", \"3,2,3,2\", \"0,0,8,0\", 10],\r\n      [\"Name3\", \"1,1,4,4\", \"1,0,0,0\", 5],\r\n      [\"Name4\", \"2,3,1,4\", \"0,0,0,6\", 7]\r\n   ],\r\n\r\n   \"metadata\":[\r\n      {\"colIndex\":0,\"colType\":\"String\",\"colName\":\"Metrics\"},\r\n      {\"colIndex\":1,\"colType\":\"String\",\"colName\":\"data1\"},\r\n      {\"colIndex\":2,\"colType\":\"String\",\"colName\":\"data2\"},\r\n      {\"colIndex\":3,\"colType\":\"String\",\"colName\":\"data3\"}\r\n   ]\r\n}"
      },
      {
       "name": "parameters",

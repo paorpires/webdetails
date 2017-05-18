@@ -32,6 +32,8 @@
 
 .stackedBar {
     display: inline-block;
+    border: 0;
+    margin: -1px;
 }
 
 .stackedBar span{

@@ -85,9 +85,9 @@ function(AddIn, Dashboard, sprintf, _, $, pv) {
                 for ( var i = 0; i < length; i++ ){
                     var wbar = Math.floor(wtmp * ratio[i]);
                     if ( wbar > 0 ){
-                        var phBar = $("<div>&nbsp;</div>").addClass('stackedBar').appendTo(ph);
+                        var phBar = $("<div></div>").addClass('stackedBar').appendTo(ph);
                         phBar.width(wbar);
-                        phBar.css('background',colors[i]);
+                        phBar.css({'background':colors[i], "display": "block", "float": "left"});
                         //if we want to show values for each bar
                         if(opt.includeValue) {
                             var valueStr = opt.valueFormat(values[i], st.colFormat, st, opt);
@@ -191,7 +191,7 @@ function(AddIn, Dashboard, sprintf, _, $, pv) {
             );
             
             var cell = $(tgt).empty();
-            var ph = $("<div>&nbsp;</div>").addClass('dataBarContainer').appendTo(cell);
+            var ph = $("<div></div>").addClass('dataBarContainer').appendTo(cell);
             var wtmp = opt.width || ph.width();
             if(typeof wtmp === 'string') {
                 if(!hasSVG) {
